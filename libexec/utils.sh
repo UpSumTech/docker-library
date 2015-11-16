@@ -90,14 +90,9 @@ require() {
       DockerContainerManager
       DockerContainerManager:required
       ;;
-    DnsmasqManager)
-      source "$( fullSrcDir )/dnsmasq-manager.sh"
-      DnsmasqManager
-      DnsmasqManager:required
-      ;;
     *)
       echo -n "Usages: "
-      echo "require "{Class\,,PathManager\,,DockerMachineManager\,,DockerManager\,,DockerContainerManager\,,DnsmasqManager\,,NetworkManager}
+      echo "require "{Class\,,PathManager\,,DockerMachineManager\,,DockerManager\,,DockerContainerManager\,,NetworkManager}
       exit 1
   esac
 }
