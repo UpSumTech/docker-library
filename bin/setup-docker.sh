@@ -13,7 +13,7 @@ prepareDockerMachine() {
   $dmm1_create
   $dmm1_stop
   $dmm1_start
-  eval "$(docker-machine env $dmm1_vmName)"
+  eval "$( docker-machine env "$( DockerMachineManager:vmName )" )"
 }
 
 runDockerManager() {

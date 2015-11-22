@@ -8,6 +8,7 @@ source "$( fullSrcDir )/utils.sh"
 
 DockerManager() {
   require Class
+  require DockerMachineManager
   _dockerManagerConstructor=$FUNCNAME
 
   DockerManager:new() {
@@ -36,35 +37,17 @@ DockerManager() {
   }
 
   _stop() {
+    eval "$( docker-machine env "$( DockerMachineManager:vmName )" )"
     docker ps -a -q | xargs -0 -I container docker stop container
   }
 
   _remove() {
+    eval "$( docker-machine env "$( DockerMachineManager:vmName )" )"
     docker ps -a -q | xargs -0 -I container docker rm container
   }
 
   DockerManager.clean() {
     _stop && _remove
-  }
-
-  _getDockerHubLogin() {
-    local dockerLoginFile="$( fullSrcDir )/../docker/.docker_login_mapping"
-    if [[ ! -f "$dockerLoginFile" ]]; then
-      Class:exception "Docker login mapping missing"
-    else
-      local line
-      local login
-      while read -r line; do
-        if [[ "$line" =~ $( whoami ):[a-zA-Z0-9_]+ ]]; then
-          login="$( echo "$line" | cut -d : -f2 )"
-        fi
-      done < "$dockerLoginFile"
-      if [[ -z "$login" ]]; then
-        Class:exception "Login not found for $( whoami )"
-      else
-        echo "$login"
-      fi
-    fi
   }
 
   DockerManager.build() {
@@ -75,7 +58,9 @@ DockerManager() {
     local name
     local dockerDir
     local nonExistingDirs=()
-    local login="$( _getDockerHubLogin )"
+
+    eval "$( docker-machine env "$( DockerMachineManager:vmName )" )"
+
     while read -r -d ',' imageNameWithTag; do
       if [[ "$imageNameWithTag" =~ [a-zA-Z0-9_\.-]+:[a-zA-Z0-9_\.-]+ ]]; then
         imageName="$( echo ${BASH_REMATCH[@]} | cut -d : -f1 )"
@@ -87,7 +72,7 @@ DockerManager() {
         dockerDir="$( fullSrcDir )/../docker/$imageName"
       fi
 
-      name="$login/$imageNameWithTag"
+      name="sumanmukherjee03/$imageNameWithTag"
 
       if [[ -d "$dockerDir" ]]; then
         docker build -t="$name" "$dockerDir"

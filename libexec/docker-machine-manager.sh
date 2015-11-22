@@ -1,8 +1,6 @@
 #!/bin/bash
 # docker-machine manager
 
-set -e
-
 fullSrcDir() {
   echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 }
@@ -22,7 +20,6 @@ DockerMachineManager() {
     Class:addInstanceMethod $constructor $this 'create' 'DockerMachineManager.create'
     Class:addInstanceMethod $constructor $this 'start' 'DockerMachineManager.start'
     Class:addInstanceMethod $constructor $this 'stop' 'DockerMachineManager.stop'
-    Class:addInstanceMethod $constructor $this 'vmName' 'DockerMachineManager.vmName'
   }
 
   DockerMachineManager.validate() {
@@ -40,9 +37,10 @@ DockerMachineManager() {
 
   DockerMachineManager.start() {
     local dockerMachineStatus="$( docker-machine status "$_dockerMachineVM" )"
-    [[ "$dockerMachineStatus" =~ Stopped ]] \
-      && docker-machine start "$_dockerMachineVM" >/dev/null 2>&1
-    echo "Starting docker-machine..."; sleep 2
+    if [[ "$dockerMachineStatus" =~ Stopped|Saved ]]; then
+      docker-machine start "$_dockerMachineVM" >/dev/null 2>&1
+      echo "Starting docker-machine..."; sleep 2
+    fi
   }
 
   DockerMachineManager.stop() {
@@ -52,12 +50,13 @@ DockerMachineManager() {
     echo "Stopping docker-machine..."; sleep 2
   }
 
-  DockerMachineManager.vmName() {
+  DockerMachineManager:vmName() {
     echo "$_dockerMachineVM"
   }
 
   DockerMachineManager:required() {
     export -f DockerMachineManager:new
+    export -f DockerMachineManager:vmName
   }
   export -f DockerMachineManager:required
 }
