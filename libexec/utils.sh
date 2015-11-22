@@ -65,11 +65,6 @@ require() {
       Class
       Class:required
       ;;
-    PathManager)
-      source "$( fullSrcDir )/path-manager.sh"
-      PathManager
-      PathManager:required
-      ;;
     NetworkManager)
       source "$( fullSrcDir )/network-manager.sh"
       NetworkManager
@@ -92,7 +87,7 @@ require() {
       ;;
     *)
       echo -n "Usages: "
-      echo "require "{Class\,,PathManager\,,DockerMachineManager\,,DockerManager\,,DockerContainerManager\,,NetworkManager}
+      echo "require "{Class\,,DockerMachineManager\,,DockerManager\,,DockerContainerManager\,,NetworkManager}
       exit 1
   esac
 }
