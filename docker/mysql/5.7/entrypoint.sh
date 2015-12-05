@@ -23,7 +23,7 @@ prepareDbScript() {
 
 cleanup() {
   while [ ! -f /var/run/mysqld/mysqld.sock ]; do
-    sleep 1
+    sleep 2
   done
   local file="$1"
   rm "$file"
@@ -37,7 +37,7 @@ main() {
   prepareDbScript "$tmpFile"
   set -- "$@" --datadir="$MYSQLDATA" --init-file="$tmpFile"
   exec gosu mysql "$@"
-  # cleanup "$tmpFile"
+  cleanup "$tmpFile"
 }
 
 if [ "${1:0:1}" = '-' ]; then
