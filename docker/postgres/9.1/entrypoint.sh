@@ -22,7 +22,7 @@ main() {
   exec gosu postgres "$@"
 }
 
-if [ "${1:0:1}" = '-' ];
+if [ "${1:0:1}" = '-' ]; then
   set -- postgres "$@"
 fi
 
