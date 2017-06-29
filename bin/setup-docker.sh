@@ -31,12 +31,18 @@ runDockerManager() {
         'nvm:v0.23.2' \
         'node:v0.10.29' \
         'rbenv:0.4.0' \
+        'rbenv:1.4.0' \
         'ruby:1.9.3-p484' \
+        'ruby:2.2.0' \
+        'ruby:2.0.0-p648' \
         'rails:3.2.18' \
+        'rails:4.2.5' \
         'rails:onbuild' \
+        'rails:onbuild-4.2.5' \
         'nginx:1.4.6' \
         'nginx:passenger-nginx' \
         'consul:0.5.0' \
+        'ambassador:1.0' \
       )
       IFS=,
       echo "${allImages[*]}"

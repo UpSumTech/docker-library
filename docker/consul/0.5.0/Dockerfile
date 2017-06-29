@@ -22,7 +22,7 @@ VOLUME ["/var/lib/consul"]
 
 ENV CONSUL_DATA /var/lib/consul
 
-EXPOSE 8300 8301 8302 8400 8500 53/udp
+EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 8500 53/udp
 
 COPY ./entrypoint.sh /entrypoint.sh
 
