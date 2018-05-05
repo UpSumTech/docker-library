@@ -1,5 +1,7 @@
 FROM sumanmukherjee03/ubuntu:16.04
-LABEL nvm_version="v0.33.11"
+LABEL nvm_version="v0.33.11" \
+  io.k8s.display-name="Nvm Base Image" \
+  io.k8s.description="This is the Nvm base image that is used for building other node images"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

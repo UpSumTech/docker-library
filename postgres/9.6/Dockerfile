@@ -1,5 +1,7 @@
 FROM sumanmukherjee03/ubuntu:16.04
-LABEL postgres_version="9.6"
+LABEL postgres_version="9.6" \
+  io.k8s.display-name="Postgres Base Image" \
+  io.k8s.description="This is the Postgres base image that is used for building postgres databases"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

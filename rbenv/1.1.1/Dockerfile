@@ -1,5 +1,7 @@
 FROM sumanmukherjee03/ubuntu:16.04
-LABEL rbenv_version="1.11.1"
+LABEL rbenv_version="1.11.1" \
+  io.k8s.display-name="Rbenv Base Image" \
+  io.k8s.description="This is the rbenv base image that is used for building other ruby based images"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

@@ -1,5 +1,7 @@
 FROM sumanmukherjee03/ruby:2.5.1
-LABEL rails_version="5.2.0"
+LABEL rails_version="5.2.0" \
+  io.k8s.display-name="Rails Base Image" \
+  io.k8s.description="This is the Rails base image that is used for building rails applications"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

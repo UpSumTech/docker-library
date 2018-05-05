@@ -1,5 +1,7 @@
 FROM sumanmukherjee03/rbenv:1.1.1
-LABEL ruby_version="2.5.1"
+LABEL ruby_version="2.5.1" \
+  io.k8s.display-name="Ruby Base Image" \
+  io.k8s.description="This is the Ruby base image that is used for building other images"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

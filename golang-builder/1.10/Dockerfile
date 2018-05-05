@@ -1,5 +1,7 @@
 FROM sumanmukherjee03/ubuntu:16.04
-LABEL go_version="1.10"
+LABEL go_version="1.10" \
+  io.k8s.display-name="Golang Builder Base Image" \
+  io.k8s.description="This is the Golang Builder base image that is used for building golang binaries"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

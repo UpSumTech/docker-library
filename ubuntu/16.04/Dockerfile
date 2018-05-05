@@ -2,7 +2,9 @@ FROM ubuntu:16.04
 LABEL os="ubuntu" \
   os_version="16.04" \
   author_name="Suman Mukherjee" \
-  author_email="sumanmukherjee03@gmail.com"
+  author_email="sumanmukherjee03@gmail.com" \
+  io.k8s.display-name="Ubuntu Base Image" \
+  io.k8s.description="This is the Ubuntu base image that is used for building other images"
 
 ENV BUILD_DATA="/var/data/build" \
   DEBIAN_FRONTEND="noninteractive" \
