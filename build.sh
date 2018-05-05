@@ -33,6 +33,7 @@ main() {
   pushd .
   cd "$ROOT_DIR/$image/$version"
   docker build -t $DOCKERHUB_USERNAME/$image:$version .
+  docker push $DOCKERHUB_USERNAME/$image:$version
   popd
 }
 
