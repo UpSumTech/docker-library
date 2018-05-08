@@ -30,12 +30,12 @@ is_root_execing() {
 }
 
 is_non_root_execing() {
-  return [[ $(id -u) -eq $NON_ROOT_ID ]]
+  return [[ $(id -u) -eq $EXPECTED_NON_ROOT_UID ]]
 }
 
 log_user_and_group() {
   echo "User id : $(id -u)"
-  echo "User id : $(id -g)"
+  echo "Group id : $(id -g)"
   echo "User name : $(id -un)"
   echo "Group name : $(id -gn)"
   ok
