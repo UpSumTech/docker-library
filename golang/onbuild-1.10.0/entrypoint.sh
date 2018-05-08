@@ -25,14 +25,6 @@ chdir_and_exec() {
   echo "$result"
 }
 
-is_root_execing() {
-  return [[ $(id -u) -eq 0 ]]
-}
-
-is_non_root_execing() {
-  return [[ $(id -u) -eq $EXPECTED_NON_ROOT_UID ]]
-}
-
 log_user_and_group() {
   echo "User id : $(id -u)"
   echo "Group id : $(id -g)"
@@ -59,9 +51,9 @@ validate() {
     || die "repo name not provided to build the container"
   [[ ! -d "$ARTIFACT_VOLUME_DIR" ]] \
     || die "artifact volume dir not present to put the build artifacts in"
-  is_root_execing \
+  [[ $(id -u) -eq 0 ]] \
     && die "container should not run as root"
-  is_non_root_execing \
+  [[ $(id -u) -eq $EXPECTED_NON_ROOT_UID ]] \
       || die "User execing the container is not the non root user expected"
   ok
 }
