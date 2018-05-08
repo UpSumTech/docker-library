@@ -6,6 +6,8 @@ LABEL rails_version="5.2.0" \
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001
 ARG NON_ROOT_USER=default
+ENV EXPECTED_NON_ROOT_UID=$NON_ROOT_UID
+ENV EXPECTED_NON_ROOT_GID=$NON_ROOT_GID
 
 RUN set -ex; \
   apt-get install -y --no-install-recommends \

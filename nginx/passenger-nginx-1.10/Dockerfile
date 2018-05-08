@@ -6,6 +6,8 @@ LABEL nginx_version="passenger-nginx-1.10" \
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001
 ARG NON_ROOT_USER=default
+ENV EXPECTED_NON_ROOT_UID=$NON_ROOT_UID
+ENV EXPECTED_NON_ROOT_GID=$NON_ROOT_GID
 
 RUN set -ex; \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7; \

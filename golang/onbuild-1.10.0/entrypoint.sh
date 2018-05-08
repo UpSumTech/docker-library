@@ -60,15 +60,14 @@ validate() {
 
 build_and_package() {
   . /.bash_profile \
-    && CGO_ENABLED=0 gox -osarch='linux/amd64 linux/386 darwin/amd64 darwin/386' -rebuild -tags='netgo' -ldflags='-w -extldflags "-static"' \
-    && mv ${PROJECT}_linux_386 $ARTIFACT_VOLUME_DIR \
-    && mv ${PROJECT}_linux_amd64 $ARTIFACT_VOLUME_DIR \
-    && mv ${PROJECT}_darwin_386 $ARTIFACT_VOLUME_DIR \
-    && mv ${PROJECT}_darwin_amd64 $ARTIFACT_VOLUME_DIR \
-    && cd $ARTIFACT_VOLUME_DIR \
-    && tar czf $PROJECT.tar.gz * \
-    && rm ${PROJECT}_linux_386 $PROJECT_darwin_386 ${PROJECT}_linux_amd64 $PROJECT_darwin_amd64 \
-    || die "build and package did not successfully complete"
+    && CGO_ENABLED=0 gox -osarch='linux/amd64 linux/386 darwin/amd64 darwin/386' -rebuild -tags='netgo' -ldflags='-w -extldflags "-static"'
+  mv ${PROJECT}_linux_386 $ARTIFACT_VOLUME_DIR
+  mv ${PROJECT}_linux_amd64 $ARTIFACT_VOLUME_DIR
+  mv ${PROJECT}_darwin_386 $ARTIFACT_VOLUME_DIR
+  mv ${PROJECT}_darwin_amd64 $ARTIFACT_VOLUME_DIR
+  cd $ARTIFACT_VOLUME_DIR
+  tar czf $PROJECT.tar.gz *
+  rm ${PROJECT}_linux_386 $PROJECT_darwin_386 ${PROJECT}_linux_amd64 $PROJECT_darwin_amd64
   ok
 }
 
