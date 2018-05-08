@@ -41,8 +41,15 @@ log_user_and_group() {
   ok
 }
 
+log_env_vars() {
+  printenv
+  ok
+}
+
 log_current_state() {
   log_user_and_group
+  log_env_vars
+  ok
 }
 
 validate() {
