@@ -45,29 +45,29 @@ log_current_state() {
 }
 
 validate() {
-  [[ ! -z "$NON_ROOT_USER" ]] \
+  [[ ! -z "$EXPECTED_NON_ROOT_UID" ]] \
     || die "non root user not provided for running the container"
-  [[ ! -z "$REPO_NAME" ]] \
+  [[ ! -z "$PROJECT" ]] \
     || die "repo name not provided to build the container"
-  [[ ! -d "$ARTIFACT_VOLUME_DIR" ]] \
+  [[ -d "$ARTIFACT_VOLUME_DIR" ]] \
     || die "artifact volume dir not present to put the build artifacts in"
   [[ $(id -u) -eq 0 ]] \
     && die "container should not run as root"
   [[ $(id -u) -eq $EXPECTED_NON_ROOT_UID ]] \
-      || die "User execing the container is not the non root user expected"
+      || die "user execing the container is not the non root user expected"
   ok
 }
 
 build_and_package() {
   . /.bash_profile \
     && CGO_ENABLED=0 gox -osarch='linux/amd64 linux/386 darwin/amd64 darwin/386' -rebuild -tags='netgo' -ldflags='-w -extldflags "-static"' \
-    && mv ${REPO_NAME}_linux_386 $ARTIFACT_VOLUME_DIR \
-    && mv ${REPO_NAME}_linux_amd64 $ARTIFACT_VOLUME_DIR \
-    && mv ${REPO_NAME}_darwin_386 $ARTIFACT_VOLUME_DIR \
-    && mv ${REPO_NAME}_darwin_amd64 $ARTIFACT_VOLUME_DIR \
+    && mv ${PROJECT}_linux_386 $ARTIFACT_VOLUME_DIR \
+    && mv ${PROJECT}_linux_amd64 $ARTIFACT_VOLUME_DIR \
+    && mv ${PROJECT}_darwin_386 $ARTIFACT_VOLUME_DIR \
+    && mv ${PROJECT}_darwin_amd64 $ARTIFACT_VOLUME_DIR \
     && cd $ARTIFACT_VOLUME_DIR \
-    && tar czf $REPO_NAME.tar.gz * \
-    && rm ${REPO_NAME}_linux_386 $REPO_NAME_darwin_386 ${REPO_NAME}_linux_amd64 $REPO_NAME_darwin_amd64 \
+    && tar czf $PROJECT.tar.gz * \
+    && rm ${PROJECT}_linux_386 $PROJECT_darwin_386 ${PROJECT}_linux_amd64 $PROJECT_darwin_amd64 \
     || die "build and package did not successfully complete"
   ok
 }
