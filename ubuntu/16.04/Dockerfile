@@ -59,3 +59,5 @@ RUN set -ex; \
 
 RUN set -ex; \
   echo '[ -f $HOME/.bashrc ] && . $HOME/.bashrc' >> /.bash_profile
+
+STOPSIGNAL SIGTERM

@@ -12,3 +12,5 @@ ARG NON_ROOT_USER=default
 COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD []
+
+STOPSIGNAL SIGTERM

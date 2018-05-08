@@ -1,8 +1,11 @@
 #! /usr/bin/env bash
 
-set -e
+set -e -o pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+[[ -f utils.sh ]] && . utils.sh
+
 IMAGES=( \
   "ubuntu:16.04" \
   "rbenv:1.1.1" \
@@ -17,7 +20,10 @@ IMAGES=( \
   "nginx:1.10" \
   "nginx:passenger-nginx-1.10" \
   "ambassador:1.0" \
-  "golang-builder:1.10" \
+  "goenv:1.12.0" \
+  "golang:1.10.0" \
+  "golang:onbuild-1.10.0" \
+  "artifact-volume:1.0" \
 )
 
 main() {
@@ -29,7 +35,9 @@ main() {
     version="$(echo $image_and_version | cut -d ':' -f2)"
     echo;echo;echo ">>>>>>>>>>>>>>>>> Building $image:$version <<<<<<<<<<<<<<<<<<<<<<<"
     /usr/bin/env bash $ROOT_DIR/build.sh "$image" "$version"
+    echo ">>>>>>>>>>>>>>>>> Finished building $image:$version <<<<<<<<<<<<<<<<<<<<<<<"
   done
+  echo; echo; echo "Successfully built and pushed all images"
 }
 
 [[ $BASH_SOURCE == $0 ]] && main "$@"
