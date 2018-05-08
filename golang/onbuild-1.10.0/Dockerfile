@@ -6,9 +6,9 @@ LABEL onbuild_app_type="golang" \
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001
 ARG NON_ROOT_USER=default
-COPY entrypoint.sh /home/$NON_ROOT_USER/entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN set -ex; \
-  chown $NON_ROOT_USER:$NON_ROOT_USER /home/$NON_ROOT_USER/entrypoint.sh
+  chown $NON_ROOT_USER:$NON_ROOT_USER /entrypoint.sh
 
 ONBUILD ARG NON_ROOT_UID=1001
 ONBUILD ARG NON_ROOT_GID=1001
@@ -28,4 +28,5 @@ ONBUILD USER $NON_ROOT_USER
 ONBUILD WORKDIR /home/$NON_ROOT_USER/go/src/$GITHUB_USERNAME/$REPO_NAME
 ONBUILD RUN set -ex; \
   . /.bash_profile && dep ensure
-ONBUILD ENTRYPOINT ["/home/$NON_ROOT_USER/entrypoint.sh"]
+
+ENTRYPOINT ["/entrypoint.sh"]

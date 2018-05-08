@@ -30,7 +30,19 @@ is_root_execing() {
 }
 
 is_non_root_execing() {
-  return [[ $(id -un) =~ $NON_ROOT_USER ]]
+  return [[ $(id -u) -eq $NON_ROOT_ID ]]
+}
+
+log_user_and_group() {
+  echo "User id : $(id -u)"
+  echo "User id : $(id -g)"
+  echo "User name : $(id -un)"
+  echo "Group name : $(id -gn)"
+  ok
+}
+
+log_current_state() {
+  log_user_and_group
 }
 
 validate() {
@@ -42,15 +54,9 @@ validate() {
     || die "artifact volume dir not present to put the build artifacts in"
   is_root_execing \
     && die "container should not run as root"
-  !is_root_execing && is_non_root_execing
+  is_non_root_execing \
       || die "User execing the container is not the non root user expected"
   ok
-}
-
-exec_as_root() {
-  gosu $NON_ROOT_USER source /.bash_profile \
-    && CGO_ENABLED=0 gox -osarch='linux/amd64 linux/386 darwin/amd64 darwin/386' -rebuild -tags='netgo' -ldflags='-w -extldflags "-static"' \
-    && build_gzipped_tar
 }
 
 build_and_package() {
@@ -68,6 +74,7 @@ build_and_package() {
 }
 
 main() {
+  log_current_state
   validate
   chdir_and_exec build_and_package
   ok
