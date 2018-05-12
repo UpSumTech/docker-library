@@ -41,7 +41,8 @@ RUN set -ex; \
     dirmngr \
     gnupg \
     rsync \
-    g++; \
+    g++ \
+    jq; \
   apt-get autoremove -y \
     && apt-get clean -y; \
   mkdir -p $BUILD_DATA
