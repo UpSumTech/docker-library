@@ -61,4 +61,6 @@ RUN set -ex; \
 RUN set -ex; \
   echo '[ -f $HOME/.bashrc ] && . $HOME/.bashrc' >> /.bash_profile
 
+COPY ./bash_utils.sh /usr/local/share/bash_utils.sh
+
 STOPSIGNAL SIGTERM

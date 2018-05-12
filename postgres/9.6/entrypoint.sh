@@ -1,10 +1,7 @@
-#!/bin/bash
+#! /usr/bin/env bash
 set -e
 
-err() {
-  echo >&2 "Error : $@"
-  exit 1
-}
+[[ -f /usr/local/share/bash_utils.sh && $BASH_UTILS_SOURCED -neq 1 ]] && . /usr/local/share/bash_utils.sh
 
 validate() {
   [[ ! -z "$PASSWD" ]] || die "PASSWD was not provided"
