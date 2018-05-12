@@ -24,6 +24,7 @@ IMAGES=( \
   "golang:1.10.0" \
   "golang:onbuild-1.10.0" \
   "artifact-volume:1.0" \
+  "docker-builder:1.13.1"
 )
 
 main() {
