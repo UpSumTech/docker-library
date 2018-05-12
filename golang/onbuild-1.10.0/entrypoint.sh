@@ -62,9 +62,9 @@ validate() {
     && die "container should not run as root"
   [[ $(id -u) -eq $EXPECTED_NON_ROOT_UID ]] \
       || die "user execing the container is not the non root user expected"
-  . /.bash_profile && command -v gox
+  . /.bash_profile && command -v gox \
       || die "gox not in the path"
-  . /.bash_profile && command -v dep
+  . /.bash_profile && command -v dep \
       || die "dep not in the path"
   ok
 }
