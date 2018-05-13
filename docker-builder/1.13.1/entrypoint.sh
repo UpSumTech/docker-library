@@ -49,9 +49,9 @@ validate() {
     || die "not logged into docker registry"
   [[ "$git_repo_url" =~ "https" ]] \
     || die "only accepts git urls with https over token auth for release"
-  [[ "$git_repo_url" =~ (master|develop|wip|hotfix) ]] \
+  echo "$git_repo_url" | egrep '(master|develop|wip|hotfix)' \
     || die "only accepts git branches (master|develop|wip|hotfix) for release"
-  [[ "$version" =~ (major|minor|patch) ]] \
+  echo "$version" | egrep '(major|minor|patch)' \
     || die "only accepts release versions (major|minor|patch) for release"
   validate_env_vars
   ok
