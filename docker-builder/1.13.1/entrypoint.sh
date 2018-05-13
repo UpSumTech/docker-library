@@ -1,7 +1,5 @@
 #! /usr/bin/env bash
 
-set -x
-
 [[ -f "/usr/local/share/bash_utils.sh" && ! $BASH_UTILS_SOURCED -eq 1 ]] && . "/usr/local/share/bash_utils.sh"
 
 DOCKER_SOCKET="/var/run/docker.sock"
