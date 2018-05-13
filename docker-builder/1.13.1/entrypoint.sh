@@ -3,10 +3,18 @@
 [[ -f "/usr/local/share/bash_utils.sh" && ! $BASH_UTILS_SOURCED -eq 1 ]] && . "/usr/local/share/bash_utils.sh"
 
 DOCKER_SOCKET="/var/run/docker.sock"
-DOCKER_CONFIG="$HOME/.docker/config.json"
+DOCKER_CONFIG_NEW="$HOME/.docker/config.json"
+DOCKER_CONFIG_OLD="$HOME/.dockercfg"
+DOCKER_CONFIG
 PROJECT_TMPDIR=$(mktemp -d "$TMPDIR/build.XXXX")
 
 trap "rm -rf $PROJECT_TMPDIR; echo 'Cleaned up tmp dir'" EXIT
+
+if [[ -f "$DOCKER_CONFIG_NEW" ]]; then
+  DOCKER_CONFIG="$DOCKER_CONFIG_NEW"
+else
+  DOCKER_CONFIG="$DOCKER_CONFIG_OLD"
+fi
 
 validate_env_vars() {
   [[ ! -z "$GITHUB_USERNAME" ]] \
