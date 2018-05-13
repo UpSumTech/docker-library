@@ -79,6 +79,7 @@ release() {
   local git_branch="$2"
   local version="$3"
   cd "$PROJECT_TMPDIR/$(get_repo_name "$repo_url")"
+  pwd
   case "$git_branch" in
     *wip*)
       make release WIP=1 VERSION="$version" \
