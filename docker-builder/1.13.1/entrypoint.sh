@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -x
+
 [[ -f "/usr/local/share/bash_utils.sh" && ! $BASH_UTILS_SOURCED -eq 1 ]] && . "/usr/local/share/bash_utils.sh"
 
 DOCKER_SOCKET="/var/run/docker.sock"
@@ -58,7 +60,7 @@ validate() {
 get_repo_name() {
   local repo_url="$1"
   local repo_name="$(echo $repo_url | cut -d '/' -f5 | sed -e 's#.git##g')"
-  echo $repo_name
+  echo "$repo_name"
 }
 
 clone_repo() {
@@ -78,8 +80,7 @@ release() {
   local git_repo_url="$1"
   local git_branch="$2"
   local version="$3"
-  cd "$PROJECT_TMPDIR/$(get_repo_name "$repo_url")"
-  pwd
+  cd "$PROJECT_TMPDIR/$(get_repo_name "$git_repo_url")"
   case "$git_branch" in
     *wip*)
       make release WIP=1 VERSION="$version" \
