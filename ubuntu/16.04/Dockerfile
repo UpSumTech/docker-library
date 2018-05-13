@@ -12,6 +12,7 @@ ENV BUILD_DATA="/var/data/build" \
   MAKEFLAGS="-j$(($(nproc) + 1))"
 
 RUN apt-key update \
+  && apt update \
   && apt-get -qq update \
   && chsh -s /bin/bash \
   && rm /bin/sh && ln -sf /bin/bash /bin/sh
@@ -19,6 +20,7 @@ RUN apt-key update \
 RUN set -ex; \
   apt-get install -y --no-install-recommends \
     apt-utils \
+    build-essential \
     ca-certificates \
     apt-transport-https \
     gcc \
@@ -41,10 +43,10 @@ RUN set -ex; \
     dirmngr \
     gnupg \
     rsync \
-    g++ \
-    jq; \
-  apt-get autoremove -y \
-    && apt-get clean -y; \
+    jq \
+    g++; \
+  apt-get autoremove -y; \
+  apt-get clean -y; \
   mkdir -p $BUILD_DATA
 
 RUN set -ex; \
@@ -58,9 +60,9 @@ RUN set -ex; \
   chmod +x /usr/local/bin/gosu; \
   gosu nobody true
 
+COPY ./bash_utils.sh /usr/local/share/bash_utils.sh
+
 RUN set -ex; \
   echo '[ -f $HOME/.bashrc ] && . $HOME/.bashrc' >> /.bash_profile
-
-COPY ./bash_utils.sh /usr/local/share/bash_utils.sh
 
 STOPSIGNAL SIGTERM

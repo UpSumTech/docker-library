@@ -1,7 +1,5 @@
 #! /usr/bin/env bash
 
-set -e
-
 main() {
   local file="$1"
   local passwd="$2"

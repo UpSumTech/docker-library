@@ -27,7 +27,7 @@ build_and_push() {
   local image="$1"
   local version="$2"
   cd "$ROOT_DIR/$image/$version"
-  docker build -t $DOCKERHUB_USERNAME/$image:$version .
+  docker build --rm -t $DOCKERHUB_USERNAME/$image:$version .
   docker push $DOCKERHUB_USERNAME/$image:$version
   ok
 }

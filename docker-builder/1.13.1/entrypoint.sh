@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-[[ -f /usr/local/share/bash_utils.sh && $BASH_UTILS_SOURCED -neq 1 ]] && . /usr/local/share/bash_utils.sh
+[[ -f "/usr/local/share/bash_utils.sh" && ! $BASH_UTILS_SOURCED -eq 1 ]] && . "/usr/local/share/bash_utils.sh"
 
 DOCKER_SOCKET="/var/run/docker.sock"
 
@@ -15,6 +15,7 @@ validate() {
 }
 
 main() {
+  log_current_state
   validate
   docker images
 }

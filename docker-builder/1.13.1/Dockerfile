@@ -16,5 +16,3 @@ VOLUME $DOCKER_SOCKET
 COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD []
-
-STOPSIGNAL SIGTERM

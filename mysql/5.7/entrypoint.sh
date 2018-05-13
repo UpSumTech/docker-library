@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-set -e
 
 [[ -f /usr/local/share/bash_utils.sh && $BASH_UTILS_SOURCED -neq 1 ]] && . /usr/local/share/bash_utils.sh
 
