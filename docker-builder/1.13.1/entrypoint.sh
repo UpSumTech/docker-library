@@ -37,8 +37,6 @@ validate() {
     || die "docker socket is not present"
   curl -ivs --unix-socket $DOCKER_SOCKET http://localhost/version \
     || die "cant communicate with the docker socket"
-  [[ -f "$DOCKER_CONFIG" ]] \
-    || die "docker config not present"
   [[ ! -z "$(cat "$DOCKER_CONFIG" | jq -r ".auths | .[] | .auth")" ]] \
     || die "not logged into docker registry"
   [[ "$git_repo_url" =~ "https" ]] \
