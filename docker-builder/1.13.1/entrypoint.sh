@@ -29,8 +29,6 @@ validate_env_vars() {
     || die "BINTRAY_REPO_NAME is not exported"
   [[ ! -z "$BINTRAY_API_KEY" ]] \
     || die "BINTRAY_REPO_NAME is not exported"
-  [[ ! -z "$GIT_REPO_NAME" ]] \
-    || die "REPO_NAME is not exported"
 }
 
 validate() {
