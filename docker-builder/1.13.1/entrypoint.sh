@@ -69,6 +69,7 @@ clone_repo() {
   git clone "$repo_url"
   cd "$(get_repo_name "$repo_url")"
   git fetch --all
+  git pull --tags
   git checkout "$git_branch"
   git status
   ok
@@ -80,16 +81,16 @@ release() {
   local version="$3"
   cd "$PROJECT_TMPDIR/$(get_repo_name "$git_repo_url")"
   case "$git_branch" in
-    *wip*)
-      make release WIP=1 VERSION="$version" \
+    *hotfix*)
+      make release HOTFIX=1 VERSION="$version" DEBUG=on \
         || die "could not release from branch $git_branch for version level $version"
       ;;
-    *hotfix*)
-      make release HOTFIX=1 VERSION="$version" \
+    *wip*)
+      make release WIP=1 VERSION="$version" DEBUG=on \
         || die "could not release from branch $git_branch for version level $version"
       ;;
     master|develop)
-      make release HOTFIX=1 VERSION="$version" \
+      make release VERSION="$version" DEBUG=on \
         || die "could not release from branch $git_branch for version level $version"
       ;;
     *)
