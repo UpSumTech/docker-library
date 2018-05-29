@@ -14,5 +14,7 @@ RUN set -ex; \
 VOLUME $DOCKER_SOCKET
 
 COPY ./entrypoint.sh /entrypoint.sh
+COPY ./gitconfig /etc/gitconfig
+COPY ./gitignore /etc/gitignore
 ENTRYPOINT ["/entrypoint.sh"]
 CMD []

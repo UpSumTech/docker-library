@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-[[ -f /usr/local/share/bash_utils.sh && $BASH_UTILS_SOURCED -neq 1 ]] && . /usr/local/share/bash_utils.sh
+[[ -f /usr/local/share/bash_utils.sh && ! $BASH_UTILS_SOURCED -eq 1 ]] && . /usr/local/share/bash_utils.sh
 
 validate() {
   [[ ! -z "$PASSWD" ]] || die "PASSWD was not provided"

@@ -35,6 +35,8 @@ validate_env_vars() {
     || die "GIT_USER is not exported"
   [[ ! -z "$GIT_EMAIL" ]] \
     || die "GIT_EMAIL is not exported"
+  [[ ! -z "$BUILDER_DATA_DIR" ]] \
+    || die "BUILDER_DATA_DIR is not exported"
 }
 
 validate() {
@@ -58,12 +60,6 @@ validate() {
   echo "$version" | egrep '(major|minor|patch)' \
     || die "only accepts release versions (major|minor|patch) for release"
   validate_env_vars
-  ok
-}
-
-prep() {
-  git config --global user.email "$GIT_EMAIL"
-  git config --global user.name "$GIT_USER"
   ok
 }
 
@@ -118,7 +114,6 @@ main() {
   local version="$3"
   log_current_state
   validate "$git_repo_url" "$git_branch" "$version"
-  prep
   chdir_and_exec clone_repo "$git_repo_url" "$git_branch"
   chdir_and_exec release "$git_repo_url" "$git_branch" "$version"
 }

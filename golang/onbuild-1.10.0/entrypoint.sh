@@ -1,9 +1,12 @@
 #! /usr/bin/env bash
 
-set -ex -o pipefail
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo "Running container for golang binary builder"
 
-[[ -f /usr/local/share/bash_utils.sh && $BASH_UTILS_SOURCED -neq 1 ]] && . /usr/local/share/bash_utils.sh
+[[ -f "/usr/local/share/bash_utils.sh" && ! $BASH_UTILS_SOURCED -eq 1 ]] && . "/usr/local/share/bash_utils.sh"
+
+set -ex -o pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 validate() {
   [[ ! -z "$EXPECTED_NON_ROOT_UID" ]] \
