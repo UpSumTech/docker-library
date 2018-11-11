@@ -17,7 +17,7 @@ validate() {
     || die "Please have \$DOCKERHUB_PASSWORD exported in your shell cause you cant push the images otherwise"
   [[ -f "$HOME/.docker/config.json" ]] \
     || die "You dont have docker configured on this user"
-  test ! -z "$(cat "$HOME/.docker/config.json" | jq -r '.auths | .[] | .auth')" \
+  test ! -z "$(cat "$HOME/.docker/config.json" | jq -r '.auths | ."https://index.docker.io/v1/" | .auth')" \
     || die "You are not logged into dockerhub"
   [[ -d "$ROOT_DIR/$image/$version" ]] \
     || die "The image and version provided doesnt exist"
