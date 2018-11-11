@@ -20,9 +20,11 @@ IMAGES=( \
   "nginx:1.10" \
   "nginx:passenger-nginx-1.10" \
   "ambassador:1.0" \
-  "goenv:1.12.0" \
+  "goenv:1.23.0" \
   "golang:1.10.0" \
   "golang:onbuild-1.10.0" \
+  "golang:1.11.0" \
+  "golang:onbuild-1.11.0" \
   "artifact-volume:1.0" \
   "docker-builder:1.13.1"
 )
