@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ubuntu:16.04
+FROM upsumtech/ubuntu:20.04
 LABEL docker_version="1.13.1" \
   io.k8s.display-name="Docker Builder Base Image" \
   io.k8s.description="This is the base image that is used for building docker containers"

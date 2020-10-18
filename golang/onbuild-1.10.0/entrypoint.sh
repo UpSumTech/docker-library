@@ -45,7 +45,7 @@ build_and_package() {
 main() {
   log_current_state
   validate
-  chdir_and_exec build_and_package
+  chdir_run_and_ret_res build_and_package
   ok
 }
 

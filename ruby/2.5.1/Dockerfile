@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/rbenv:1.1.1
+FROM upsumtech/rbenv:1.1.1
 LABEL ruby_version="2.5.1" \
   io.k8s.display-name="Ruby Base Image" \
   io.k8s.description="This is the Ruby base image that is used for building other images"

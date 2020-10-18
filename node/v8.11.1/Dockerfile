@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/nvm:v0.33.11
+FROM upsumtech/nvm:v0.33.11
 LABEL node_version="8.11.1" \
   io.k8s.display-name="Node Base Image" \
   io.k8s.description="This is the Node base image that is used for building node applications"

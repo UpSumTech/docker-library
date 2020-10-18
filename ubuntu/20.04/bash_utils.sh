@@ -16,7 +16,7 @@ ok() {
   echo -n ''
 }
 
-chdir_and_exec() {
+chdir_run_and_ret_res() {
   local result
   local fn="$1"
   shift 1

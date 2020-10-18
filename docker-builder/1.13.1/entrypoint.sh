@@ -114,8 +114,8 @@ main() {
   local version="$3"
   log_current_state
   validate "$git_repo_url" "$git_branch" "$version"
-  chdir_and_exec clone_repo "$git_repo_url" "$git_branch"
-  chdir_and_exec release "$git_repo_url" "$git_branch" "$version"
+  chdir_run_and_ret_res clone_repo "$git_repo_url" "$git_branch"
+  chdir_run_and_ret_res release "$git_repo_url" "$git_branch" "$version"
 }
 
 [[ $BASH_SOURCE == $0 ]] && main "$@"

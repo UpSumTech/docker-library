@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ubuntu:16.04
+FROM upsumtech/ubuntu:20.04
 LABEL rbenv_version="1.11.1" \
   io.k8s.display-name="Rbenv Base Image" \
   io.k8s.description="This is the rbenv base image that is used for building other ruby based images"
@@ -26,12 +26,12 @@ RUN set -ex; \
     libxml2-dev \
     libxslt1-dev \
     libcurl4-openssl-dev \
-    python-software-properties \
+    software-properties-common \
     python-dev \
     zlib1g-dev \
     libncurses5-dev \
     libffi-dev \
-    libgdbm3 \
+    libgdbm6 \
     libgdbm-dev
 
 USER $NON_ROOT_USER

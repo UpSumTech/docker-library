@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/golang:1.10.0
+FROM upsumtech/golang:1.10.0
 LABEL onbuild_app_type="golang" \
   io.k8s.display-name="Golang Onbuild Base Image" \
   io.k8s.description="This is the Golang onbuild base image that is used for building golang binaries"

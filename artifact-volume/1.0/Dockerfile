@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ubuntu:16.04
+FROM upsumtech/ubuntu:20.04
 LABEL artifact_volume_version="1.0" \
   io.k8s.display-name="Artifact Volume Base Image" \
   io.k8s.description="This is the base image that is used for storing build artifacts and keep the container up and running so that you can download the build artifact"

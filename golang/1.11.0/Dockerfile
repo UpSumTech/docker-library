@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/goenv:1.23.0
+FROM upsumtech/goenv:1.23.0
 LABEL golang_version="1.11.0" \
   io.k8s.display-name="Golang Base Image for 1.11.0" \
   io.k8s.description="This is the Golang base image that is used for building golang binaries based on golang 1.11.0"

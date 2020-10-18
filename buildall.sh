@@ -7,7 +7,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [[ -f utils.sh ]] && . utils.sh
 
 IMAGES=( \
-  "ubuntu:16.04" \
+  "ubuntu:20.04" \
   "rbenv:1.1.1" \
   "ruby:2.5.1" \
   "rails:5.2.0" \
@@ -16,7 +16,7 @@ IMAGES=( \
   "node:v8.11.1" \
   "node:onbuild-v8.11.1" \
   "mysql:5.7" \
-  "postgres:9.6" \
+  "postgres:12.4" \
   "nginx:1.10" \
   "nginx:passenger-nginx-1.10" \
   "ambassador:1.0" \
@@ -38,7 +38,8 @@ main() {
     version="$(echo $image_and_version | cut -d ':' -f2)"
     echo;echo;echo ">>>>>>>>>>>>>>>>> Building $image:$version <<<<<<<<<<<<<<<<<<<<<<<"
     /usr/bin/env bash $ROOT_DIR/build.sh "$image" "$version"
-    echo ">>>>>>>>>>>>>>>>> Finished building $image:$version <<<<<<<<<<<<<<<<<<<<<<<"
+    echo ">>>>>>>>>>>>>>>>>> Finished building $image:$version <<<<<<<<<<<<<<<<<<<<<<<"
+    sleep 10;
   done
   echo; echo; echo "Successfully built and pushed all images"
 }

@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ubuntu:16.04
+FROM upsumtech/ubuntu:20.04
 LABEL nginx_version="1.10" \
   io.k8s.display-name="Nginx Base Image" \
   io.k8s.description="This is the Nginx base image that is used for building reverse proxies"

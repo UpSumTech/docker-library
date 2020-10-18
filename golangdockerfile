@@ -1,6 +1,6 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 LABEL "os"="ubuntu" \
-  os_version="16.04" \
+  os_version="20.04" \
   golang_version="1.10" \
   author_name="Suman Mukherjee" \
   author_email="sumanmukherjee03@gmail.com" \

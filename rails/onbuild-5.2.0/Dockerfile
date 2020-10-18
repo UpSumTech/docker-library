@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/rails:5.2.0
+FROM upsumtech/rails:5.2.0
 LABEL onbuild_app_type="rails" \
   io.k8s.display-name="Rails Onbuild Base Image" \
   io.k8s.description="This is the Rails Onbuild base image that is used for building rails applications"

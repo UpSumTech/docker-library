@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ubuntu:16.04
+FROM upsumtech/ubuntu:20.04
 LABEL goenv_version="1.23.0" \
   io.k8s.display-name="Goenv Base Image" \
   io.k8s.description="This is the Goenv base image that is used for building golang images"

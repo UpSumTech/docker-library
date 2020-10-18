@@ -14,6 +14,14 @@ ok() {
 }
 
 chdir_and_exec() {
+  local fn="$1"
+  shift 1
+  pushd .
+  eval "$(declare -F "$fn")" "$@"
+  popd
+}
+
+chdir_run_and_ret_res() {
   local result
   local fn="$1"
   shift 1

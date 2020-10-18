@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ubuntu:16.04
+FROM upsumtech/ubuntu:20.04
 LABEL mysql_version="5.7" \
   io.k8s.display-name="Mysql Base Image" \
   io.k8s.description="This is the Mysql base image that is used for building mysql databases"

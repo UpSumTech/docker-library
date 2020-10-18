@@ -1,4 +1,4 @@
-FROM sumanmukherjee03/ruby:2.5.1
+FROM upsumtech/ruby:2.5.1
 LABEL rails_version="5.2.0" \
   io.k8s.display-name="Rails Base Image" \
   io.k8s.description="This is the Rails base image that is used for building rails applications"
@@ -19,7 +19,7 @@ RUN set -ex; \
     libpq-dev \
     chrpath \
     libpng-dev \
-    libpng12-dev \
+    libpng-tools \
     libbz2-dev \
     libglib2.0-dev \
     zlib1g-dev \
@@ -42,7 +42,6 @@ RUN set -ex; \
     parallel \
     lsof \
     unzip \
-    realpath \
     nodejs \
     npm; \
   npm install -g coffee-script; \

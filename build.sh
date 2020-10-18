@@ -15,6 +15,8 @@ validate() {
     || die "Please have \$DOCKERHUB_USERNAME exported in your shell"
   [[ ! -z $DOCKERHUB_PASSWORD ]] \
     || die "Please have \$DOCKERHUB_PASSWORD exported in your shell cause you cant push the images otherwise"
+  [[ ! -z $DOCKERHUB_ORGANIZATION ]] \
+    || die "Please have \$DOCKERHUB_ORGANIZATION exported in your shell"
   [[ -f "$HOME/.docker/config.json" ]] \
     || die "You dont have docker configured on this user"
   test ! -z "$(cat "$HOME/.docker/config.json" | jq -r '.auths | ."https://index.docker.io/v1/" | .auth')" \
@@ -27,8 +29,8 @@ build_and_push() {
   local image="$1"
   local version="$2"
   cd "$ROOT_DIR/$image/$version"
-  docker build --rm -t $DOCKERHUB_USERNAME/$image:$version .
-  docker push $DOCKERHUB_USERNAME/$image:$version
+  docker build --rm -t $DOCKERHUB_ORGANIZATION/$image:$version .
+  docker push $DOCKERHUB_ORGANIZATION/$image:$version
   ok
 }
 
