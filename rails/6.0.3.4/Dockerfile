@@ -1,5 +1,5 @@
-FROM upsumtech/ruby:2.5.1
-LABEL rails_version="5.2.0" \
+FROM upsumtech/ruby:2.7.2
+LABEL rails_version="6.0.3.4" \
   io.k8s.display-name="Rails Base Image" \
   io.k8s.description="This is the Rails base image that is used for building rails applications"
 
@@ -8,6 +8,7 @@ ARG NON_ROOT_GID=1001
 ARG NON_ROOT_USER=default
 ENV EXPECTED_NON_ROOT_UID=$NON_ROOT_UID
 ENV EXPECTED_NON_ROOT_GID=$NON_ROOT_GID
+ENV RAILS_VERSION=6.0.3.4
 
 RUN set -ex; \
   apt-get install -y --no-install-recommends \
@@ -57,6 +58,6 @@ EXPOSE 3000
 
 USER $NON_ROOT_USER
 
-RUN source /.bash_profile && gem install rails --version 5.2.0
+RUN source /.bash_profile && gem install rails --version $RAILS_VERSION
 
 USER root
