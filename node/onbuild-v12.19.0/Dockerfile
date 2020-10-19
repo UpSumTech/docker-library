@@ -1,4 +1,4 @@
-FROM upsumtech/node:v8.11.1
+FROM upsumtech/node:v12.19.0
 LABEL onbuild_app_type="node" \
   io.k8s.display-name="Node Onbuild Base Image" \
   io.k8s.description="This is the Node Onbuild base image that is used for building node applications"
