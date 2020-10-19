@@ -25,6 +25,8 @@ validate_env_vars() {
     || die "GITHUB_TOKEN is not exported"
   [[ ! -z "$DOCKERHUB_USERNAME" ]] \
     || die "DOCKERHUB_USERNAME is not exported"
+  [[ ! -z "$DOCKERHUB_ORGANIZATION" ]] \
+    || die "DOCKERHUB_ORGANIZATION is not exported"
   [[ ! -z "$BINTRAY_USERNAME" ]] \
     || die "BINTRAY_USERNAME is not exported"
   [[ ! -z "$BINTRAY_REPO_NAME" ]] \
