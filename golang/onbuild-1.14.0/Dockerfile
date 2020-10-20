@@ -1,7 +1,7 @@
-FROM upsumtech/golang:1.11.0
+FROM upsumtech/golang:1.14.0
 LABEL onbuild_app_type="golang" \
-  io.k8s.display-name="Golang Onbuild Base Image for golang 1.11.0" \
-  io.k8s.description="This is the Golang onbuild base image that is used for building golang binaries with golang 1.11.0"
+  io.k8s.display-name="Golang Onbuild Base Image" \
+  io.k8s.description="This is the Golang onbuild base image that is used for building golang binaries"
 
 ARG NON_ROOT_UID=1001
 ARG NON_ROOT_GID=1001

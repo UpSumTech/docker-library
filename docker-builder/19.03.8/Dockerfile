@@ -1,5 +1,5 @@
 FROM upsumtech/ubuntu:20.04
-LABEL docker_version="1.13.1" \
+LABEL docker_version="19.03.8" \
   io.k8s.display-name="Docker Builder Base Image" \
   io.k8s.description="This is the base image that is used for building docker containers"
 
