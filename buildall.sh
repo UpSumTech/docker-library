@@ -8,25 +8,22 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 IMAGES=( \
   "ubuntu:20.04" \
-  "rbenv:1.1.1" \
-  "ruby:2.5.1" \
-  "rails:5.2.0" \
-  "rails:onbuild-5.2.0" \
-  "nvm:v0.33.11" \
-  "node:v8.11.1" \
-  "node:onbuild-v8.11.1" \
-  "mysql:5.7" \
+  "rbenv:1.1.2" \
+  "ruby:2.7.2" \
+  "rails:6.0.3.4" \
+  "rails:onbuild-6.0.3.4" \
+  "nvm:v0.36.0" \
+  "node:v12.19.0" \
+  "node:onbuild-v12.19.0" \
+  "mysql:8.0" \
   "postgres:12.4" \
-  "nginx:1.10" \
-  "nginx:passenger-nginx-1.10" \
+  "nginx:1.18.0" \
   "ambassador:1.0" \
-  "goenv:1.23.0" \
-  "golang:1.10.0" \
-  "golang:onbuild-1.10.0" \
-  "golang:1.11.0" \
-  "golang:onbuild-1.11.0" \
+  "goenv:latest" \
+  "golang:1.14.0" \
+  "golang:onbuild-1.14.0" \
   "artifact-volume:1.0" \
-  "docker-builder:1.13.1"
+  "docker-builder:19.03.8"
 )
 
 main() {
