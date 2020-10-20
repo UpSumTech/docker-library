@@ -18,7 +18,8 @@ chdir_and_exec() {
   shift 1
   pushd .
   eval "$(declare -F "$fn")" "$@"
-  popd
+  popd || die "popd failed"
+  ok
 }
 
 chdir_run_and_ret_res() {
@@ -27,7 +28,7 @@ chdir_run_and_ret_res() {
   shift 1
   pushd .
   result=$(eval "$(declare -F "$fn")" "$@")
-  popd
+  popd || die "popd failed"
   echo "$result"
 }
 
