@@ -13,12 +13,17 @@ ENV GO_VERSION=1.14.0
 USER $NON_ROOT_USER
 WORKDIR /home/$NON_ROOT_USER
 
+ENV PATH="/home/$NON_ROOT_USER/go/$GO_VERSION/bin:$PATH"
+
 RUN set -ex; \
   source /.bash_profile; \
   goenv install $GO_VERSION; \
   goenv global $GO_VERSION; \
-  go env && goenv root; \
-  go get -u github.com/golang/dep/cmd/dep github.com/mitchellh/gox
+  goenv root; \
+  go env; \
+  go get -u github.com/golang/dep/cmd/dep github.com/mitchellh/gox; \
+  command -v dep; \
+  command -v gox
 
 WORKDIR /
 USER root
