@@ -31,8 +31,7 @@ ONBUILD RUN chown -R $NON_ROOT_USER:$NON_ROOT_USER /home/$NON_ROOT_USER/go/$GO_V
 ONBUILD USER $NON_ROOT_USER
 ONBUILD WORKDIR /home/$NON_ROOT_USER/go/$GO_VERSION/src/$GITHUB_ORGANIZATION/$REPO_NAME
 ONBUILD RUN set -ex; \
-  . /.bash_profile; \
-  go env; \
+  . /.bash_profile >/dev/null; \
   dep ensure
 
 ENTRYPOINT ["/entrypoint.sh"]
