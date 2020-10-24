@@ -22,8 +22,6 @@ ONBUILD ENV PROJECT=$REPO_NAME
 ONBUILD ENV ARTIFACT_VOLUME_DIR /var/data/build
 
 ONBUILD RUN set -ex; \
-  source /.bash_profile; \
-  go env; \
   mkdir -p /home/$NON_ROOT_USER/go/$GO_VERSION/src/$GITHUB_ORGANIZATION/$REPO_NAME && \
   chown -R $NON_ROOT_USER:$NON_ROOT_USER /home/$NON_ROOT_USER/go/$GO_VERSION/src/$GITHUB_ORGANIZATION/$REPO_NAME; \
   mkdir -p $ARTIFACT_VOLUME_DIR && \
@@ -34,6 +32,7 @@ ONBUILD USER $NON_ROOT_USER
 ONBUILD WORKDIR /home/$NON_ROOT_USER/go/$GO_VERSION/src/$GITHUB_ORGANIZATION/$REPO_NAME
 ONBUILD RUN set -ex; \
   . /.bash_profile; \
+  go env; \
   dep ensure
 
 ENTRYPOINT ["/entrypoint.sh"]
